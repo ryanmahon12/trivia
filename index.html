@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trivia Night</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e2520; --bg2:#123129; --tile:#17402f; --tile-hi:#1f5540; --line:rgba(255,255,255,.09);
+    --accent:#e0bd62; --accent-ink:#2a2010; --text:#f7f0e3; --muted:#a8bcb1; --good:#6fc28e; --bad:#e0675c;
+    --glow:rgba(224,189,98,.25);
+  }
+  body[data-theme="thanksgiving"]{
+    --bg:#26170f; --bg2:#321e13; --tile:#4b2b18; --tile-hi:#613a20; --line:rgba(255,255,255,.08);
+    --accent:#efa94a; --accent-ink:#2b1806; --text:#fbf1e2; --muted:#cfb39a; --good:#9cc76f; --bad:#e2694a;
+    --glow:rgba(239,169,74,.25);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%}
+  body{
+    font-family:'DM Sans',system-ui,sans-serif;color-scheme:dark;color:var(--text);
+    background:
+      radial-gradient(1200px 700px at 15% -10%, var(--bg2), transparent 60%),
+      radial-gradient(900px 600px at 110% 110%, var(--bg2), transparent 55%),
+      var(--bg);
+    min-height:100vh; overflow-x:hidden;
+  }
+  body[data-theme="christmas"]::before{
+    content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;
+    background-image:
+      radial-gradient(1.5px 1.5px at 10% 20%, #fff, transparent),
+      radial-gradient(1px 1px at 30% 70%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 55% 35%, #fff, transparent),
+      radial-gradient(1px 1px at 75% 80%, #fff, transparent),
+      radial-gradient(2px 2px at 88% 15%, #fff, transparent),
+      radial-gradient(1px 1px at 45% 90%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 65% 55%, #fff, transparent),
+      radial-gradient(1px 1px at 20% 50%, #fff, transparent);
+    background-size: 420px 420px;
+    animation: snow 40s linear infinite;
+  }
+  @keyframes snow{from{background-position:0 0}to{background-position:0 420px}}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  h1,h2,h3,.display{font-family:Fraunces,Georgia,serif;letter-spacing:-.01em}
+  button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+  input,textarea,select{font:inherit;color:var(--text)}
+  .wrap{max-width:1100px;margin:0 auto;padding:40px 24px 80px}
+  .btn{padding:10px 18px;border-radius:999px;background:var(--tile);border:1px solid var(--line);font-weight:600;transition:.15s}
+  .btn:hover{background:var(--tile-hi)}
+  .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+  .btn.primary:hover{filter:brightness(1.07)}
+  .btn.ghost{background:transparent}
+  .btn.small{padding:6px 12px;font-size:13px}
+  .btn.danger{color:var(--bad)}
+  .btn:disabled{opacity:.4;cursor:default}
+  .muted{color:var(--muted)}
+  .eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:700;color:var(--accent)}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .spacer{flex:1}
+
+  /* Home */
+  .hero h1{font-size:clamp(40px,6vw,72px);margin:8px 0 6px;line-height:1}
+  .hero p{margin:0;color:var(--muted);font-size:18px}
+  .games{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:36px}
+  .card{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:12px}
+  .card h3{margin:0;font-size:26px}
+  .card .meta{font-size:13px;color:var(--muted)}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;background:var(--tile)}
+  .notice{margin-top:28px;padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted)}
+
+  /* Setup */
+  .teams{display:grid;gap:10px;margin:20px 0}
+  .teamrow{display:flex;gap:10px;align-items:center}
+  .teamrow input{flex:1;background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:18px}
+  .toggle{display:flex;gap:10px;align-items:center;font-size:15px;color:var(--muted);cursor:pointer}
+  .toggle input{width:18px;height:18px;accent-color:var(--accent)}
+
+  /* Board */
+  .game{height:100vh;display:flex;flex-direction:column;padding:18px 22px 0}
+  .topbar{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .topbar h2{margin:0;font-size:clamp(20px,2.4vw,30px)}
+  .topbar .round{font-family:Fraunces,serif;color:var(--accent);font-size:clamp(16px,1.8vw,22px)}
+  .board{flex:1;display:grid;gap:10px;min-height:0;grid-auto-rows:1fr}
+  .cat{background:var(--tile-hi);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px 10px;
+       font-family:Fraunces,serif;font-weight:700;font-size:clamp(13px,1.55vw,22px);line-height:1.1;text-transform:uppercase;letter-spacing:.02em;border-bottom:3px solid var(--accent)}
+  .tile{background:var(--tile);border-radius:12px;font-family:Fraunces,serif;font-weight:800;font-size:clamp(22px,3.6vw,52px);color:var(--accent);
+        border:1px solid var(--line);transition:transform .12s, background .12s, box-shadow .12s;text-shadow:0 2px 0 rgba(0,0,0,.25)}
+  .tile:hover{transform:translateY(-2px);background:var(--tile-hi);box-shadow:0 8px 24px var(--glow)}
+  .tile.played{background:rgba(255,255,255,.025);color:transparent;text-shadow:none;border-style:dashed}
+  .tile.played:hover{transform:none;box-shadow:none;color:var(--muted)}
+  .tile.played:hover::after{content:"reopen";font-family:'DM Sans';font-weight:500;font-size:12px}
+  .scorebar{display:flex;gap:10px;padding:14px 0 16px;overflow-x:auto}
+  .team{flex:1;min-width:140px;background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+  .team .tname{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .team .tscore{font-family:Fraunces,serif;font-weight:800;font-size:clamp(22px,2.6vw,34px)}
+  .team .tscore.neg{color:var(--bad)}
+  .team .adj{position:absolute;top:6px;right:6px;display:flex;gap:4px;opacity:0;transition:.15s}
+  .team:hover .adj{opacity:1}
+  .adj button{width:24px;height:24px;border-radius:7px;background:var(--tile);font-weight:700;font-size:14px;line-height:1}
+  .roundnext{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);z-index:5;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+
+  /* Overlay */
+  .overlay{position:fixed;inset:0;z-index:20;background:
+      radial-gradient(900px 600px at 50% 30%, var(--tile-hi), transparent 70%), var(--bg);
+      display:flex;flex-direction:column;padding:28px 36px;animation:pop .22s ease-out}
+  @keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+  .ov-head{display:flex;align-items:center;gap:14px}
+  .ov-head .cat-label{font-family:Fraunces,serif;font-weight:700;font-size:clamp(16px,2vw,26px);text-transform:uppercase;letter-spacing:.04em}
+  .ov-head .val{font-family:Fraunces,serif;font-weight:800;color:var(--accent);font-size:clamp(18px,2.2vw,30px)}
+  .ov-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:28px;padding:10px 4vw}
+  .question{font-family:Fraunces,serif;font-weight:700;font-size:clamp(28px,4.2vw,62px);line-height:1.15;max-width:1200px;text-wrap:balance}
+  .answer{font-family:Fraunces,serif;font-weight:800;color:var(--accent);font-size:clamp(26px,3.6vw,52px);line-height:1.15;max-width:1100px;text-wrap:balance;animation:pop .25s ease-out}
+  .answer-note{font-size:clamp(14px,1.4vw,19px);color:var(--muted);max-width:900px;margin-top:-14px}
+  .ov-foot{display:flex;flex-direction:column;gap:14px;align-items:center}
+  .scoreline{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .scorechip{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:999px;padding:6px 6px 6px 14px}
+  .scorechip .n{font-weight:600;margin-right:4px;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .scorechip .s{font-family:Fraunces,serif;font-weight:700;color:var(--muted);margin-right:4px;min-width:40px;text-align:right}
+  .mark{width:36px;height:36px;border-radius:50%;font-weight:800;font-size:17px;background:var(--tile);border:1px solid var(--line)}
+  .mark.good:hover,.mark.good.on{background:var(--good);color:#10240f}
+  .mark.bad:hover,.mark.bad.on{background:var(--bad);color:#2a0c08}
+  .kbd{font-size:12px;color:var(--muted)}
+  .kbd b{display:inline-block;border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin:0 2px;font-weight:600}
+  .timer{font-family:Fraunces,serif;font-weight:800;font-size:26px;min-width:56px;text-align:center}
+  .timer.low{color:var(--bad)}
+  .dd{font-family:Fraunces,serif;font-weight:800;font-size:clamp(56px,10vw,150px);color:var(--accent);line-height:.95;text-shadow:0 6px 40px var(--glow);animation:ddpop .5s cubic-bezier(.2,1.4,.4,1)}
+  @keyframes ddpop{from{transform:scale(.4) rotate(-6deg);opacity:0}to{transform:none;opacity:1}}
+  .field{display:flex;flex-direction:column;gap:6px;text-align:left}
+  .field label{font-size:13px;color:var(--muted);font-weight:600}
+  .inp{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:18px}
+  select.inp{appearance:auto}
+  .wagers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;width:min(900px,100%)}
+
+  /* Results */
+  .podium{display:flex;flex-direction:column;gap:12px;width:min(640px,100%)}
+  .place{display:flex;align-items:center;gap:16px;background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:16px;padding:14px 20px;font-size:22px}
+  .place.first{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent), 0 10px 40px var(--glow)}
+  .place .rank{font-family:Fraunces,serif;font-weight:800;color:var(--accent);width:36px}
+  .place .pts{margin-left:auto;font-family:Fraunces,serif;font-weight:800}
+
+  /* Editor */
+  .ed-head{position:sticky;top:0;z-index:4;background:var(--bg);padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:22px}
+  .tabs{display:flex;gap:6px;margin:6px 0 20px;flex-wrap:wrap}
+  .tab{padding:8px 16px;border-radius:999px;border:1px solid var(--line);font-weight:600}
+  .tab.on{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+  .ed-cat{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px}
+  .ed-cat .catname{font-family:Fraunces,serif;font-size:22px;font-weight:700;background:transparent;border:0;border-bottom:1px dashed var(--line);padding:4px 2px;flex:1;min-width:200px}
+  .ed-clue{display:grid;grid-template-columns:90px 1fr 1fr;gap:10px;margin-top:10px;align-items:start}
+  .ed-clue input,.ed-clue textarea,.ed-grid input,.ed-grid textarea{background:var(--tile);border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:15px;width:100%;resize:vertical}
+  .ed-clue textarea{min-height:44px}
+  .ed-cols{display:grid;grid-template-columns:90px 1fr 1fr;gap:10px;font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-top:12px}
+  .ed-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .ed-grid .full{grid-column:1/-1}
+  .status{font-size:13px;color:var(--muted)}
+  .status.ok{color:var(--good)} .status.err{color:var(--bad)}
+  @media (max-width:720px){ .ed-clue,.ed-cols{grid-template-columns:70px 1fr} .ed-clue textarea:last-child{grid-column:2} .ed-grid{grid-template-columns:1fr}}
+
+  /* Modal */
+  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
+  .modal{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:24px;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .modal p{margin:0 0 18px;font-size:17px;line-height:1.4}
+</style>
+</head>
+<body data-theme="christmas">
+<div id="app"></div>
+<script>
+(() => {
+  // ---------- tiny helpers ----------
+  const $app = document.getElementById('app');
+  function h(tag, attrs, ...kids){
+    const el = document.createElement(tag);
+    if (attrs) for (const [k,v] of Object.entries(attrs)){
+      if (v == null || v === false) continue;
+      if (k === 'class') el.className = v;
+      else if (k === 'style') el.style.cssText = v;
+      else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
+      else if (k === 'value') el.value = v;
+      else el.setAttribute(k, v === true ? '' : v);
+    }
+    for (const kid of kids.flat()){
+      if (kid == null || kid === false) continue;
+      el.append(kid instanceof Node ? kid : document.createTextNode(String(kid)));
+    }
+    return el;
+  }
+  const store = {
+    get(k){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch(e){ return null; } },
+    set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} },
+    del(k){ try { localStorage.removeItem(k); } catch(e){} }
+  };
+  const clone = o => JSON.parse(JSON.stringify(o));
+  const fmt = n => (n < 0 ? '−' : '') + Math.abs(n).toLocaleString();
+
+  function modal(text, buttons){
+    const bg = h('div',{class:'modal-bg'});
+    const close = () => bg.remove();
+    bg.append(h('div',{class:'modal'},
+      h('p',null,text),
+      h('div',{class:'row',style:'justify-content:flex-end'},
+        buttons.map(b => h('button',{class:'btn '+(b.cls||''), onclick:()=>{ close(); b.fn && b.fn(); }}, b.label)))
+    ));
+    bg.addEventListener('click', e => { if (e.target === bg) close(); });
+    document.body.append(bg);
+  }
+  const confirmBox = (text, yesLabel, fn) => modal(text, [{label:'Cancel',cls:'ghost'},{label:yesLabel,cls:'primary',fn}]);
+
+  // ---------- data ----------
+  let db = null;
+  let games = {};          // id -> data
+  let gamesLoaded = false, dbFailed = false;
+  let route = {view:'home'};
+  let keyHandler = null;
+
+  function setTheme(t){ document.body.dataset.theme = t === 'thanksgiving' ? 'thanksgiving' : 'christmas'; }
+
+  function stateKey(id){ return 'trivia_state_' + id; }
+
+  function newState(game, teamNames, deduct){
+    const dd = {};
+    (game.rounds||[]).forEach((r, ri) => {
+      const count = ri === 0 ? 1 : 2;
+      const cells = [];
+      r.categories.forEach((c, ci) => c.clues.forEach((q, qi) => { if (qi > 0) cells.push(`${ri}-${ci}-${qi}`); }));
+      for (let i = 0; i < count && cells.length; i++){
+        const pick = cells.splice(Math.floor(Math.random()*cells.length),1)[0];
+        dd[pick] = true;
+        // avoid two DDs in the same category
+        const [, c] = pick.split('-');
+        for (let j = cells.length-1; j >= 0; j--) if (cells[j].split('-')[1] === c) cells.splice(j,1);
+      }
+    });
+    return { teams: teamNames.map(n => ({name:n, score:0})), played:{}, dd, round:0, deduct:!!deduct,
+             final:{step:0, wagers:{}, results:{}}, started:Date.now() };
+  }
+
+  function blankGame(title){
+    const mkRound = (name, mult) => ({ name, categories: Array.from({length:6}, (_,i) => ({
+      name:'Category '+(i+1), clues: Array.from({length:5}, (_,k) => ({ value:(k+1)*200*mult, q:'', a:'' })) })) });
+    return { title, subtitle:'', theme:'christmas', order: Date.now(),
+             rounds:[mkRound('Round One',1), mkRound('Double Round',2)],
+             final:{ category:'Final Category', q:'', a:'' } };
+  }
+
+  // ---------- routing ----------
+  function go(r){
+    route = r;
+    if (keyHandler){ document.removeEventListener('keydown', keyHandler); keyHandler = null; }
+    render();
+    window.scrollTo(0,0);
+  }
+
+  function render(){
+    $app.innerHTML = '';
+    const g = route.id ? games[route.id] : null;
+    setTheme(g ? g.theme : (route.view === 'home' ? firstTheme() : 'christmas'));
+    if (route.view === 'home') return $app.append(viewHome());
+    if (!g) { route = {view:'home'}; return $app.append(viewHome()); }
+    if (route.view === 'setup') return $app.append(viewSetup(g));
+    if (route.view === 'play') return $app.append(viewPlay(g));
+    
+  }
+  function firstTheme(){ const l = sortedGames(); return l.length ? l[0][1].theme : 'christmas'; }
+  function sortedGames(){ return Object.entries(games).sort((a,b) => (a[1].order||0) - (b[1].order||0)); }
+
+  // ---------- HOME ----------
+  function viewHome(){
+    const list = sortedGames();
+    const wrap = h('div',{class:'wrap'},
+      h('div',{class:'hero'},
+        h('div',{class:'eyebrow'},'Trivia Night'),
+        h('h1',null,'Pick a game.'),
+        h('p',null,'Teams, scores and played squares are tracked for you.')
+      )
+    );
+    if (dbFailed){
+      wrap.append(h('div',{class:'notice'},"Couldn't load the questions. Check your connection and refresh."));
+      return wrap;
+    }
+    if (!gamesLoaded){
+      wrap.append(h('div',{class:'notice'},'Loading games…'));
+      return wrap;
+    }
+    const grid = h('div',{class:'games'});
+    for (const [id, g] of list){
+      const saved = store.get(stateKey(id));
+      const nQ = (g.rounds||[]).reduce((s,r)=>s+r.categories.reduce((t,c)=>t+c.clues.length,0),0) + (g.final ? 1 : 0);
+      grid.append(h('div',{class:'card'},
+        h('span',{class:'pill',style:'align-self:flex-start'}, g.theme === 'thanksgiving' ? 'Thanksgiving' : 'Christmas'),
+        h('h3',null,g.title || 'Untitled game'),
+        g.subtitle ? h('div',{class:'muted'},g.subtitle) : null,
+        h('div',{class:'meta'}, `${(g.rounds||[]).length} rounds · ${nQ} questions` + (saved ? ' · game in progress' : '')),
+        h('div',{class:'row',style:'margin-top:auto'},
+          saved ? h('button',{class:'btn primary', onclick:()=>go({view:'play',id})},'Resume') : null,
+          h('button',{class:'btn '+(saved?'':'primary'), onclick:()=>go({view:'setup',id})}, saved ? 'New game' : 'Play'),
+        )
+      ));
+    }
+    wrap.append(grid);
+    return wrap;
+  }
+
+  async function createGame(){
+    const id = 'game-' + Date.now().toString(36);
+    const g = blankGame('New Trivia Game');
+    try {
+      await db.doc('games/'+id).set(g);
+      games[id] = g;
+      go({view:'edit', id});
+    } catch(e){
+      modal("Couldn't create the game: " + (e && e.message || 'no edit access') + '.', [{label:'OK',cls:'primary'}]);
+    }
+  }
+
+  // ---------- SETUP ----------
+  function viewSetup(g){
+    const prev = store.get('trivia_last_teams') || ['Team 1','Team 2','Team 3'];
+    let names = prev.slice();
+    let deduct = !!store.get('trivia_last_deduct');
+    const list = h('div',{class:'teams'});
+    const drawTeams = () => {
+      list.innerHTML = '';
+      names.forEach((n,i) => list.append(h('div',{class:'teamrow'},
+        h('input',{value:n, placeholder:'Team name', oninput:e=>{ names[i] = e.target.value; }}),
+        names.length > 1 ? h('button',{class:'btn ghost small', onclick:()=>{ names.splice(i,1); drawTeams(); }},'Remove') : null
+      )));
+    };
+    drawTeams();
+    const start = () => {
+      const clean = names.map((n,i)=> n.trim() || `Team ${i+1}`);
+      store.set('trivia_last_teams', clean);
+      store.set('trivia_last_deduct', deduct);
+      store.set(stateKey(route.id), newState(g, clean, deduct));
+      go({view:'play', id:route.id});
+    };
+    return h('div',{class:'wrap',style:'max-width:680px'},
+      h('button',{class:'btn ghost small', onclick:()=>go({view:'home'})},'← All games'),
+      h('div',{class:'eyebrow',style:'margin-top:24px'},'Set up teams'),
+      h('h1',{style:'font-size:44px;margin:6px 0 4px'}, g.title),
+      g.subtitle ? h('p',{class:'muted',style:'margin:0'}, g.subtitle) : null,
+      list,
+      h('div',{class:'row'},
+        names.length < 8 ? h('button',{class:'btn', onclick:()=>{ names.push(`Team ${names.length+1}`); drawTeams(); }},'+ Add team') : null
+      ),
+      h('label',{class:'toggle',style:'margin:22px 0'},
+        h('input',{type:'checkbox', checked:deduct||null, onchange:e=>{ deduct = e.target.checked; }}),
+        'Wrong answers lose points (classic Jeopardy rules)'
+      ),
+      h('button',{class:'btn primary',style:'font-size:18px;padding:14px 28px', onclick:start},'Start the game →'),
+      store.get(stateKey(route.id)) ? h('p',{class:'muted',style:'font-size:14px'},'Starting clears the game already in progress.') : null
+    );
+  }
+
+  // ---------- PLAY ----------
+  function viewPlay(g){
+    let st = store.get(stateKey(route.id));
+    if (!st){ setTimeout(()=>go({view:'setup',id:route.id})); return h('div'); }
+    const save = () => store.set(stateKey(route.id), st);
+    const root = h('div');
+
+    const draw = () => {
+      root.innerHTML = '';
+      if (st.round >= g.rounds.length) root.append(drawFinal());
+      else root.append(drawBoard());
+    };
+
+    function scorebar(){
+      return h('div',{class:'scorebar'}, st.teams.map((t,i) => h('div',{class:'team'},
+        h('div',{class:'adj'},
+          h('button',{title:'−100', onclick:()=>{ t.score -= 100; save(); draw(); }},'−'),
+          h('button',{title:'+100', onclick:()=>{ t.score += 100; save(); draw(); }},'+')
+        ),
+        h('div',{class:'tname',title:'Double-click to rename', ondblclick:()=>{
+          const inp = h('input',{class:'inp',value:t.name,style:'width:100%'});
+          modal('', []); const m = document.querySelector('.modal'); m.innerHTML='';
+          m.append(h('p',null,'Rename team'), inp, h('div',{class:'row',style:'justify-content:flex-end;margin-top:14px'},
+            h('button',{class:'btn primary',onclick:()=>{ t.name = inp.value.trim()||t.name; save(); document.querySelector('.modal-bg').remove(); draw(); }},'Save')));
+          inp.focus();
+        }}, t.name),
+        h('div',{class:'tscore'+(t.score<0?' neg':'')}, fmt(t.score))
+      )));
+    }
+
+    function topbar(subtitle){
+      return h('div',{class:'topbar'},
+        h('button',{class:'btn ghost small', onclick:()=>go({view:'home'})},'← Exit'),
+        h('h2',null,g.title),
+        h('span',{class:'round'}, subtitle),
+        h('div',{class:'spacer'}),
+        h('select',{class:'btn small', onchange:e=>{ st.round = +e.target.value; save(); draw(); }},
+          g.rounds.map((r,i)=>h('option',{value:i, selected: st.round===i || null}, r.name)),
+          h('option',{value:g.rounds.length, selected: st.round>=g.rounds.length || null},'Final')
+        ),
+        h('button',{class:'btn ghost small', onclick:()=>{ document.documentElement.requestFullscreen && document.documentElement.requestFullscreen().catch(()=>{}); }},'⛶ Full screen'),
+        h('button',{class:'btn ghost small', onclick:()=>confirmBox('Reset this game? Scores and played squares will be cleared.','Reset',()=>{ store.del(stateKey(route.id)); go({view:'setup',id:route.id}); })},'Reset')
+      );
+    }
+
+    function drawBoard(){
+      const r = g.rounds[st.round];
+      const cols = r.categories.length;
+      const rows = Math.max(...r.categories.map(c=>c.clues.length));
+      const board = h('div',{class:'board',style:`grid-template-columns:repeat(${cols},1fr);grid-template-rows:auto repeat(${rows},1fr)`});
+      r.categories.forEach(c => board.append(h('div',{class:'cat',style:'min-height:72px'}, c.name)));
+      let remaining = 0;
+      for (let qi=0; qi<rows; qi++){
+        r.categories.forEach((c,ci) => {
+          const clue = c.clues[qi];
+          if (!clue){ board.append(h('div')); return; }
+          const key = `${st.round}-${ci}-${qi}`;
+          const played = !!st.played[key];
+          if (!played) remaining++;
+          board.append(h('button',{class:'tile'+(played?' played':''), onclick:()=>{
+            if (played) confirmBox('Reopen this question? Scores won’t change unless you mark them again.','Reopen',()=>openClue(st.round,ci,qi));
+            else openClue(st.round,ci,qi);
+          }}, played ? '' : clue.value));
+        });
+      }
+      const wrap = h('div',{class:'game'}, topbar(r.name), board, scorebar());
+      if (remaining === 0){
+        const last = st.round === g.rounds.length - 1;
+        wrap.append(h('button',{class:'btn primary roundnext',style:'font-size:20px;padding:16px 30px', onclick:()=>{ st.round++; save(); draw(); }},
+          last ? 'On to Final Trivia →' : `On to ${g.rounds[st.round+1].name} →`));
+      }
+      return wrap;
+    }
+
+    // ----- clue overlay -----
+    function openClue(ri,ci,qi){
+      const cat = g.rounds[ri].categories[ci];
+      const clue = cat.clues[qi];
+      const key = `${ri}-${ci}-${qi}`;
+      const isDD = !!st.dd[key] && !st.played[key];
+      const maxVal = Math.max(...g.rounds[ri].categories.flatMap(c=>c.clues.map(x=>+x.value||0)));
+      const ov = h('div',{class:'overlay'});
+      let revealed = false, marks = {}, ddTeam = 0, ddWager = 0, timerId = null;
+
+      const finish = () => {
+        clearInterval(timerId);
+        st.played[key] = true; save();
+        ov.remove();
+        document.removeEventListener('keydown', onKey);
+        draw();
+      };
+      const applyMark = (ti, kind, amount) => {
+        const prev = marks[ti];
+        const t = st.teams[ti];
+        // undo previous mark for this team
+        if (prev === 'good') t.score -= amount;
+        if (prev === 'bad' && (st.deduct || isDD)) t.score += amount;
+        if (prev === kind){ delete marks[ti]; }
+        else {
+          marks[ti] = kind;
+          if (kind === 'good') t.score += amount;
+          if (kind === 'bad' && (st.deduct || isDD)) t.score -= amount;
+        }
+        save(); drawClue();
+      };
+
+      const head = () => h('div',{class:'ov-head'},
+        h('span',{class:'cat-label'}, cat.name),
+        h('span',{class:'val'}, isDD ? `Daily Double · ${fmt(ddWager)}` : fmt(+clue.value)),
+        h('div',{class:'spacer'}),
+        timerEl(),
+        h('button',{class:'btn small', onclick:finish},'Back to board')
+      );
+      let timerLeft = 0;
+      const timerSpan = h('span',{class:'timer'});
+      function timerEl(){
+        return h('div',{class:'row'},
+          timerSpan,
+          h('button',{class:'btn small ghost', onclick:()=>startTimer(30)},'⏱ 30s')
+        );
+      }
+      function startTimer(s){
+        clearInterval(timerId); timerLeft = s; tick();
+        timerId = setInterval(()=>{ timerLeft--; tick(); if (timerLeft<=0) clearInterval(timerId); },1000);
+      }
+      function tick(){ timerSpan.textContent = timerLeft > 0 ? timerLeft : (timerId ? '⏰' : ''); timerSpan.className = 'timer'+(timerLeft<=5?' low':''); }
+
+      function drawDD(){
+        ov.innerHTML = '';
+        const teamSel = h('select',{class:'inp', onchange:e=>{ ddTeam = +e.target.value; }}, st.teams.map((t,i)=>h('option',{value:i},`${t.name} (${fmt(t.score)})`)));
+        const wagerInp = h('input',{class:'inp',type:'number',min:0,step:100,value:Math.max(st.teams[0].score, maxVal)});
+        ov.append(
+          h('div',{class:'ov-head'}, h('span',{class:'cat-label'}, cat.name), h('div',{class:'spacer'}), h('button',{class:'btn small ghost', onclick:()=>{ isDDOff(); }},'Skip Daily Double')),
+          h('div',{class:'ov-body'},
+            h('div',{class:'dd'},'Daily', h('br'), 'Double!'),
+            h('div',{class:'row',style:'justify-content:center;gap:16px'},
+              h('div',{class:'field'}, h('label',null,'Which team picked it?'), teamSel),
+              h('div',{class:'field'}, h('label',null,`Wager (up to ${fmt(maxVal)} or their score)`), wagerInp)
+            ),
+            h('button',{class:'btn primary',style:'font-size:18px;padding:14px 28px', onclick:()=>{
+              const t = st.teams[ddTeam];
+              const cap = Math.max(t.score, maxVal);
+              ddWager = Math.min(Math.max(0, Math.round(+wagerInp.value||0)), cap);
+              drawClue();
+            }},'Show the question')
+          )
+        );
+      }
+      function isDDOff(){ delete st.dd[key]; save(); ov.remove(); document.removeEventListener('keydown', onKey); openClue(ri,ci,qi); }
+
+      function drawClue(){
+        ov.innerHTML = '';
+        const amount = isDD ? ddWager : (+clue.value || 0);
+        const teamsToMark = isDD ? [ddTeam] : st.teams.map((_,i)=>i);
+        ov.append(head(),
+          h('div',{class:'ov-body'},
+            h('div',{class:'question'}, clue.q || '(No question written yet)'),
+            revealed ? h('div',{class:'answer'}, clue.a || '—') : null,
+            revealed && clue.note ? h('div',{class:'answer-note'}, clue.note) : null
+          ),
+          h('div',{class:'ov-foot'},
+            !revealed
+              ? h('button',{class:'btn primary',style:'font-size:18px;padding:14px 30px', onclick:()=>{ revealed = true; clearInterval(timerId); timerLeft=0; drawClue(); }},'Reveal answer')
+              : h('div',{class:'scoreline'}, teamsToMark.map(i => h('div',{class:'scorechip'},
+                  h('span',{class:'n'}, st.teams[i].name),
+                  h('span',{class:'s'}, fmt(st.teams[i].score)),
+                  h('button',{class:'mark good'+(marks[i]==='good'?' on':''), title:'Correct', onclick:()=>applyMark(i,'good',amount)},'✓'),
+                  h('button',{class:'mark bad'+(marks[i]==='bad'?' on':''), title:'Wrong', onclick:()=>applyMark(i,'bad',amount)},'✗')
+                ))),
+            h('div',{class:'kbd'}, h('b',null,'Space'),' reveal  ·  ', h('b',null,'Esc'),' back to board')
+          )
+        );
+        tick();
+      }
+      const onKey = e => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+        if (e.key === 'Escape'){ e.preventDefault(); finish(); }
+        else if ((e.key === ' ' || e.key === 'Enter') && !revealed && ov.querySelector('.question')){ e.preventDefault(); revealed = true; clearInterval(timerId); timerLeft=0; drawClue(); }
+      };
+      document.addEventListener('keydown', onKey);
+      document.body.append(ov);
+      isDD ? drawDD() : drawClue();
+    }
+
+    // ----- final -----
+    function drawFinal(){
+      const f = g.final || {category:'', q:'', a:''};
+      const F = st.final || (st.final = {step:0,wagers:{},results:{}});
+      const wrap = h('div',{class:'game'}, topbar('Final Trivia'));
+      const body = h('div',{class:'ov-body'});
+      if (F.step === 0){
+        body.append(
+          h('div',{class:'eyebrow'},'Final Trivia · Category'),
+          h('div',{class:'question'}, f.category || '—'),
+          h('p',{class:'muted',style:'margin:0;font-size:18px'},'Each team secretly writes down a wager, up to their current score. Enter them here.'),
+          h('div',{class:'wagers'}, st.teams.map((t,i)=> h('div',{class:'field'},
+            h('label',null,`${t.name} · has ${fmt(t.score)}`),
+            h('input',{class:'inp',type:'number',min:0,step:100,value:F.wagers[i] ?? '', placeholder:'0', oninput:e=>{ F.wagers[i] = e.target.value; save(); }})
+          ))),
+          h('button',{class:'btn primary',style:'font-size:18px;padding:14px 30px', onclick:()=>{
+            st.teams.forEach((t,i)=>{ const cap = Math.max(0,t.score); F.wagers[i] = Math.min(Math.max(0, Math.round(+F.wagers[i]||0)), cap); });
+            F.step = 1; save(); draw();
+          }},'Lock wagers & show the question')
+        );
+      } else if (F.step === 1 || F.step === 2){
+        const timerSpan = h('span',{class:'timer'});
+        let left = 0, tid = null;
+        body.append(
+          h('div',{class:'eyebrow'}, f.category || 'Final'),
+          h('div',{class:'question'}, f.q || '(No question written yet)'),
+          F.step === 2 ? h('div',{class:'answer'}, f.a || '—') : null,
+          F.step === 1 ? h('div',{class:'row',style:'justify-content:center'},
+              h('button',{class:'btn', onclick:()=>{ clearInterval(tid); left=30; timerSpan.textContent=left;
+                tid=setInterval(()=>{ left--; timerSpan.textContent = left>0?left:'⏰'; timerSpan.className='timer'+(left<=5?' low':''); if(left<=0) clearInterval(tid); },1000); }},'⏱ Start 30s'),
+              timerSpan,
+              h('button',{class:'btn primary',style:'font-size:18px;padding:14px 30px', onclick:()=>{ clearInterval(tid); F.step = 2; save(); draw(); }},'Reveal answer')
+            ) : null,
+          F.step === 2 ? h('div',{class:'scoreline'}, st.teams.map((t,i)=> h('div',{class:'scorechip'},
+              h('span',{class:'n'}, t.name),
+              h('span',{class:'s'}, `wagered ${fmt(+F.wagers[i]||0)}`),
+              h('button',{class:'mark good'+(F.results[i]==='good'?' on':''), onclick:()=>{ F.results[i] = F.results[i]==='good'?null:'good'; save(); draw(); }},'✓'),
+              h('button',{class:'mark bad'+(F.results[i]==='bad'?' on':''), onclick:()=>{ F.results[i] = F.results[i]==='bad'?null:'bad'; save(); draw(); }},'✗')
+            ))) : null,
+          F.step === 2 ? h('button',{class:'btn primary',style:'font-size:18px;padding:14px 30px', onclick:()=>{
+              st.teams.forEach((t,i)=>{ const w = +F.wagers[i]||0; if (F.results[i]==='good') t.score += w; else if (F.results[i]==='bad') t.score -= w; });
+              F.step = 3; save(); draw();
+            }},'Show final scores') : null
+        );
+      } else {
+        const ranked = st.teams.map(t=>t).sort((a,b)=>b.score-a.score);
+        body.append(
+          h('div',{class:'dd',style:'font-size:clamp(48px,7vw,100px)'}, 'Final Scores'),
+          h('div',{class:'podium'}, ranked.map((t,i)=> h('div',{class:'place'+(i===0?' first':'')},
+            h('span',{class:'rank'}, i+1), h('span',null,t.name), h('span',{class:'pts'}, fmt(t.score))
+          ))),
+          h('div',{class:'row',style:'justify-content:center'},
+            h('button',{class:'btn', onclick:()=>{ st.teams.forEach((t,i)=>{ const w=+F.wagers[i]||0; if (F.results[i]==='good') t.score -= w; else if (F.results[i]==='bad') t.score += w; }); F.step=2; save(); draw(); }},'← Back'),
+            h('button',{class:'btn primary', onclick:()=>go({view:'home'})},'Done')
+          )
+        );
+      }
+      wrap.append(body);
+      if (F.step < 3) wrap.append(scorebar());
+      return wrap;
+    }
+
+    draw();
+    return root;
+  }
+
+  // ---------- EDIT ----------
+  function viewEdit(g){
+    const id = route.id;
+    const work = clone(g);
+    let dirty = false, tab = 0;
+    const statusEl = h('span',{class:'status'},'All changes saved');
+    const markDirty = () => { dirty = true; statusEl.className = 'status'; statusEl.textContent = 'Unsaved changes'; };
+    const root = h('div',{class:'wrap'});
+    const bodyEl = h('div');
+
+    async function save(){
+      statusEl.className='status'; statusEl.textContent='Saving…';
+      try {
+        await db.doc('games/'+id).set(work);
+        games[id] = clone(work);
+        dirty = false; statusEl.className='status ok'; statusEl.textContent='Saved ✓';
+      } catch(e){
+        statusEl.className='status err'; statusEl.textContent="Couldn't save — " + (e && e.code === 'invalid_argument' ? "you don't have edit access" : (e && e.message || 'try again'));
+      }
+    }
+    const leave = () => dirty ? confirmBox('You have unsaved changes. Leave without saving?','Leave',()=>go({view:'home'})) : go({view:'home'});
+
+    const input = (obj, key, attrs={}) => h(attrs.multi ? 'textarea' : 'input', Object.assign({
+      value: obj[key] ?? '', rows: attrs.multi ? 2 : null,
+      oninput: e => { obj[key] = attrs.num ? (+e.target.value||0) : e.target.value; markDirty(); }
+    }, attrs.num ? {type:'number', step:100} : {}, attrs.ph ? {placeholder:attrs.ph} : {}, attrs.cls ? {class:attrs.cls} : {}));
+
+    function drawBody(){
+      bodyEl.innerHTML = '';
+      const tabs = h('div',{class:'tabs'},
+        h('button',{class:'tab'+(tab==='info'?' on':''), onclick:()=>{tab='info';drawBody();}},'Game info'),
+        work.rounds.map((r,i)=>h('button',{class:'tab'+(tab===i?' on':''), onclick:()=>{tab=i;drawBody();}}, r.name || `Round ${i+1}`)),
+        h('button',{class:'tab'+(tab==='final'?' on':''), onclick:()=>{tab='final';drawBody();}},'Final')
+      );
+      bodyEl.append(tabs);
+
+      if (tab === 'info'){
+        bodyEl.append(h('div',{class:'ed-grid'},
+          h('div',{class:'field full'}, h('label',null,'Game title'), input(work,'title')),
+          h('div',{class:'field full'}, h('label',null,'Subtitle (shows on the game card)'), input(work,'subtitle')),
+          h('div',{class:'field'}, h('label',null,'Look'),
+            h('select',{class:'inp', onchange:e=>{ work.theme = e.target.value; setTheme(work.theme); markDirty(); }},
+              h('option',{value:'christmas', selected: work.theme!=='thanksgiving' || null},'Christmas — pine & gold'),
+              h('option',{value:'thanksgiving', selected: work.theme==='thanksgiving' || null},'Thanksgiving — harvest amber'))),
+          h('div',{class:'field full'}, h('label',null,'Round names'),
+            h('div',{class:'ed-grid'}, work.rounds.map(r => input(r,'name'))))
+        ));
+        return;
+      }
+      if (tab === 'final'){
+        const f = work.final || (work.final = {category:'',q:'',a:''});
+        bodyEl.append(h('div',{class:'ed-grid'},
+          h('div',{class:'field full'}, h('label',null,'Final category'), input(f,'category')),
+          h('div',{class:'field full'}, h('label',null,'Question'), input(f,'q',{multi:true})),
+          h('div',{class:'field full'}, h('label',null,'Answer'), input(f,'a',{multi:true}))
+        ));
+        return;
+      }
+      const r = work.rounds[tab];
+      r.categories.forEach((c, ci) => {
+        bodyEl.append(h('div',{class:'ed-cat'},
+          h('div',{class:'row'},
+            h('input',{class:'catname', value:c.name, oninput:e=>{ c.name = e.target.value; markDirty(); }}),
+            h('button',{class:'btn ghost small', disabled: ci===0 || null, onclick:()=>{ [r.categories[ci-1], r.categories[ci]] = [r.categories[ci], r.categories[ci-1]]; markDirty(); drawBody(); }},'←'),
+            h('button',{class:'btn ghost small', disabled: ci===r.categories.length-1 || null, onclick:()=>{ [r.categories[ci+1], r.categories[ci]] = [r.categories[ci], r.categories[ci+1]]; markDirty(); drawBody(); }},'→'),
+            h('button',{class:'btn ghost small danger', onclick:()=>confirmBox(`Remove the “${c.name}” category and its questions?`,'Remove',()=>{ r.categories.splice(ci,1); markDirty(); drawBody(); })},'Remove')
+          ),
+          h('div',{class:'ed-cols'}, h('span',null,'Points'), h('span',null,'Question'), h('span',null,'Answer')),
+          c.clues.map(q => h('div',{class:'ed-clue'},
+            input(q,'value',{num:true}), input(q,'q',{multi:true, ph:'Question'}), input(q,'a',{multi:true, ph:'Answer'})
+          ))
+        ));
+      });
+      if (r.categories.length < 8){
+        bodyEl.append(h('button',{class:'btn', onclick:()=>{
+          const base = r.categories[0] ? r.categories[0].clues.map(x=>+x.value||0) : [200,400,600,800,1000];
+          r.categories.push({name:'New Category', clues: base.map(v=>({value:v,q:'',a:''}))}); markDirty(); drawBody();
+        }},'+ Add category'));
+      }
+    }
+
+    root.append(
+      h('div',{class:'ed-head'},
+        h('div',{class:'row'},
+          h('button',{class:'btn ghost small', onclick:leave},'← All games'),
+          h('div',null, h('div',{class:'eyebrow'},'Editing'), h('h2',{style:'margin:2px 0 0;font-size:26px'}, work.title)),
+          h('div',{class:'spacer'}),
+          statusEl,
+          h('button',{class:'btn primary', onclick:save},'Save changes')
+        )
+      ),
+      h('p',{class:'muted',style:'margin-top:0'},'Changes go live for everyone with the link once you hit Save. Daily Doubles are placed randomly each time a new game starts.'),
+      bodyEl
+    );
+    tab = 'info';
+    drawBody();
+    keyHandler = e => { if ((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==='s'){ e.preventDefault(); save(); } };
+    document.addEventListener('keydown', keyHandler);
+    return root;
+  }
+
+  // ---------- boot ----------
+  render();
+  fetch('games.json', {cache:'no-store'}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => { games = data; gamesLoaded = true; render(); })
+    .catch(() => { dbFailed = true; render(); });
+})();
+</script>
+</body>
+</html>

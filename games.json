@@ -1,0 +1,768 @@
+{
+ "thanksgiving-2026": {
+  "title": "Thanksgiving Trivia",
+  "subtitle": "Family game · Thanksgiving 2026",
+  "theme": "thanksgiving",
+  "order": 1,
+  "rounds": [
+   {
+    "name": "Round One",
+    "categories": [
+     {
+      "name": "Pilgrim Progress",
+      "clues": [
+       {
+        "value": 200,
+        "q": "What was the name of the ship that carried the Pilgrims to America?",
+        "a": "The Mayflower"
+       },
+       {
+        "value": 400,
+        "q": "In what year did the Mayflower arrive at Plymouth?",
+        "a": "1620"
+       },
+       {
+        "value": 600,
+        "q": "Which president made Thanksgiving a national holiday in 1863?",
+        "a": "Abraham Lincoln"
+       },
+       {
+        "value": 800,
+        "q": "This Patuxet man, who spoke English, taught the Pilgrims how to plant corn. Who was he?",
+        "a": "Squanto (Tisquantum)"
+       },
+       {
+        "value": 1000,
+        "q": "Which Native American people shared the famous 1621 harvest feast with the Pilgrims?",
+        "a": "The Wampanoag"
+       }
+      ]
+     },
+     {
+      "name": "Turkey Talk",
+      "clues": [
+       {
+        "value": 200,
+        "q": "What do you call a male turkey?",
+        "a": "A tom (or gobbler)"
+       },
+       {
+        "value": 400,
+        "q": "What do you call a baby turkey?",
+        "a": "A poult"
+       },
+       {
+        "value": 600,
+        "q": "What's the official name for a group of turkeys?",
+        "a": "A rafter (“flock” doesn’t count)"
+       },
+       {
+        "value": 800,
+        "q": "What's the name of the fleshy flap that hangs down over a turkey's beak?",
+        "a": "The snood"
+       },
+       {
+        "value": 1000,
+        "q": "Which Founding Father wrote that the turkey was a “much more respectable bird” than the bald eagle?",
+        "a": "Benjamin Franklin"
+       }
+      ]
+     },
+     {
+      "name": "Parade & Pigskin",
+      "clues": [
+       {
+        "value": 200,
+        "q": "Which NFL team has hosted a game on nearly every Thanksgiving since 1934?",
+        "a": "The Detroit Lions (no games 1939–1944, during World War II)"
+       },
+       {
+        "value": 400,
+        "q": "Which comic-strip character has appeared as a balloon in the Macy's parade more times than any other?",
+        "a": "Snoopy"
+       },
+       {
+        "value": 600,
+        "q": "In what decade did the Macy's Thanksgiving Day Parade begin?",
+        "a": "The 1920s (first parade in 1924)"
+       },
+       {
+        "value": 800,
+        "q": "Starting in 1989, broadcaster John Madden began handing the star of the Thanksgiving game what unusual award?",
+        "a": "A turkey leg"
+       },
+       {
+        "value": 1000,
+        "q": "Before the giant balloons, the first Macy's parades featured live animals borrowed from where?",
+        "a": "The Central Park Zoo (bears, elephants, camels and monkeys)"
+       }
+      ]
+     },
+     {
+      "name": "Holiday Movie Night",
+      "clues": [
+       {
+        "value": 200,
+        "q": "In “Home Alone,” what's the nickname of Kevin's scary next-door neighbor with the snow shovel?",
+        "a": "Old Man Marley"
+       },
+       {
+        "value": 400,
+        "q": "In “Elf,” what does Buddy's real dad, Walter Hobbs, do for a living?",
+        "a": "He publishes children's books"
+       },
+       {
+        "value": 600,
+        "q": "In “A Christmas Story,” what is the “major award” that Ralphie's dad wins?",
+        "a": "A leg lamp"
+       },
+       {
+        "value": 800,
+        "q": "In “Home Alone,” what's the name of the old gangster movie Kevin plays to scare off the pizza guy?",
+        "a": "“Angels with Filthy Souls”"
+       },
+       {
+        "value": 1000,
+        "q": "In “Jingle All the Way,” what sold-out action figure is Arnold Schwarzenegger desperate to buy?",
+        "a": "Turbo-Man"
+       }
+      ]
+     },
+     {
+      "name": "Pie & Sides",
+      "clues": [
+       {
+        "value": 200,
+        "q": "Pumpkin pie spice is usually cinnamon, ginger, nutmeg, and one more spice. Name it.",
+        "a": "Cloves (allspice also accepted)"
+       },
+       {
+        "value": 400,
+        "q": "About 85% of America's canned pumpkin comes from one brand. Which one?",
+        "a": "Libby's"
+       },
+       {
+        "value": 600,
+        "q": "Green bean casserole is traditionally topped with what crunchy ingredient?",
+        "a": "French fried onions"
+       },
+       {
+        "value": 800,
+        "q": "Which U.S. state grows more than half of the country's sweet potatoes?",
+        "a": "North Carolina"
+       },
+       {
+        "value": 1000,
+        "q": "Which U.S. state grows the most cranberries?",
+        "a": "Wisconsin"
+       }
+      ]
+     },
+     {
+      "name": "Who Sings It?",
+      "clues": [
+       {
+        "value": 200,
+        "q": "Which former Beatle released “Happy Xmas (War Is Over)” with his wife?",
+        "a": "John Lennon (with Yoko Ono)"
+       },
+       {
+        "value": 400,
+        "q": "Which former Beatle had a solo hit with “Wonderful Christmastime”?",
+        "a": "Paul McCartney"
+       },
+       {
+        "value": 600,
+        "q": "Who wrote and sang “Feliz Navidad”?",
+        "a": "José Feliciano"
+       },
+       {
+        "value": 800,
+        "q": "Which singing cowboy made “Rudolph the Red-Nosed Reindeer” a hit in 1949?",
+        "a": "Gene Autry"
+       },
+       {
+        "value": 1000,
+        "q": "“Jingle Bells” was first published in 1857 under a different title. What was it?",
+        "a": "“One Horse Open Sleigh”"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Double Round",
+    "categories": [
+     {
+      "name": "Thanksgiving Then & Now",
+      "clues": [
+       {
+        "value": 400,
+        "q": "What was the name of the colony the Pilgrims founded in Massachusetts?",
+        "a": "Plymouth Colony"
+       },
+       {
+        "value": 800,
+        "q": "Which president moved Thanksgiving a week earlier in 1939, a change people nicknamed “Franksgiving”?",
+        "a": "Franklin D. Roosevelt"
+       },
+       {
+        "value": 1200,
+        "q": "About how many days did the 1621 harvest celebration last?",
+        "a": "Three days"
+       },
+       {
+        "value": 1600,
+        "q": "Which country celebrates its Thanksgiving on the second Monday in October?",
+        "a": "Canada"
+       },
+       {
+        "value": 2000,
+        "q": "Turkey, venison, or pumpkin pie: which was almost certainly NOT served at the 1621 feast?",
+        "a": "Pumpkin pie (no ovens or sugar for pie crust; the Wampanoag brought deer)"
+       }
+      ]
+     },
+     {
+      "name": "Kitchen Science",
+      "clues": [
+       {
+        "value": 400,
+        "q": "What's the name of the bone two people pull apart to make a wish?",
+        "a": "The wishbone"
+       },
+       {
+        "value": 800,
+        "q": "Which amino acid in turkey gets blamed for the after-dinner nap?",
+        "a": "Tryptophan"
+       },
+       {
+        "value": 1200,
+        "q": "What's the scientific name for the wishbone?",
+        "a": "The furcula"
+       },
+       {
+        "value": 1600,
+        "q": "In most American grocery stores, the orange “yams” are actually what?",
+        "a": "Sweet potatoes"
+       },
+       {
+        "value": 2000,
+        "q": "According to the USDA, what internal temperature must turkey reach to be safe to eat?",
+        "a": "165°F"
+       }
+      ]
+     },
+     {
+      "name": "Animated Classics",
+      "clues": [
+       {
+        "value": 400,
+        "q": "What's the name of the snowman in Disney's “Frozen”?",
+        "a": "Olaf"
+       },
+       {
+        "value": 800,
+        "q": "In the 1964 “Rudolph” special, what's the name of the island where unwanted toys live?",
+        "a": "The Island of Misfit Toys"
+       },
+       {
+        "value": 1200,
+        "q": "Name two foods on the menu at “A Charlie Brown Thanksgiving.”",
+        "a": "Buttered toast, popcorn, pretzels, and jelly beans"
+       },
+       {
+        "value": 1600,
+        "q": "In “Rudolph the Red-Nosed Reindeer,” what does Hermey the elf want to be instead of a toymaker?",
+        "a": "A dentist"
+       },
+       {
+        "value": 2000,
+        "q": "In “The Year Without a Santa Claus,” what are the names of the two feuding weather brothers?",
+        "a": "Heat Miser and Snow Miser"
+       }
+      ]
+     },
+     {
+      "name": "Count It Up",
+      "clues": [
+       {
+        "value": 400,
+        "q": "Counting Rudolph, how many reindeer pull Santa's sleigh?",
+        "a": "Nine"
+       },
+       {
+        "value": 800,
+        "q": "Thanksgiving in the U.S. always falls on which Thursday of November?",
+        "a": "The fourth Thursday"
+       },
+       {
+        "value": 1200,
+        "q": "About how many passengers sailed on the Mayflower: 50, 100, or 200?",
+        "a": "About 100 (102 passengers)"
+       },
+       {
+        "value": 1600,
+        "q": "In what year did a president first officially “pardon” a turkey (George H.W. Bush)?",
+        "a": "1989"
+       },
+       {
+        "value": 2000,
+        "q": "About how many turkeys do Americans eat on Thanksgiving: 4.6 million, 46 million, or 460 million?",
+        "a": "About 46 million"
+       }
+      ]
+     },
+     {
+      "name": "Christmas Countdown",
+      "clues": [
+       {
+        "value": 400,
+        "q": "What do people hang by the fireplace for Santa to fill?",
+        "a": "Stockings"
+       },
+       {
+        "value": 800,
+        "q": "Which plant are you supposed to kiss under at Christmas?",
+        "a": "Mistletoe"
+       },
+       {
+        "value": 1200,
+        "q": "In which country did the tradition of decorating a Christmas tree begin?",
+        "a": "Germany"
+       },
+       {
+        "value": 1600,
+        "q": "What do people in Britain call December 26th?",
+        "a": "Boxing Day"
+       },
+       {
+        "value": 2000,
+        "q": "NORAD started tracking Santa in 1955 because a newspaper ad for which store misprinted its phone number?",
+        "a": "Sears"
+       }
+      ]
+     },
+     {
+      "name": "Fall Into It",
+      "clues": [
+       {
+        "value": 400,
+        "q": "Which tree's leaf is on Canada's flag?",
+        "a": "The maple"
+       },
+       {
+        "value": 800,
+        "q": "Leaves turn yellow and orange in fall when which green pigment breaks down?",
+        "a": "Chlorophyll"
+       },
+       {
+        "value": 1200,
+        "q": "The day in fall when day and night are about equal length is called the what?",
+        "a": "The autumnal equinox"
+       },
+       {
+        "value": 1600,
+        "q": "Monarch butterflies fly thousands of miles every fall to spend winter in which country?",
+        "a": "Mexico"
+       },
+       {
+        "value": 2000,
+        "q": "What causes Earth to have seasons?",
+        "a": "The tilt of Earth's axis (not distance from the sun)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "final": {
+   "category": "Thanksgiving's Champion",
+   "q": "Sarah Josepha Hale spent 17 years writing letters to presidents until Lincoln made Thanksgiving national. She's also credited with writing which famous nursery rhyme?",
+   "a": "“Mary Had a Little Lamb”"
+  }
+ },
+ "telluride-christmas-2026": {
+  "title": "Telluride Christmas Trivia",
+  "subtitle": "Adults only · Christmas 2026 in the box canyon",
+  "theme": "christmas",
+  "order": 2,
+  "rounds": [
+   {
+    "name": "Round One",
+    "categories": [
+     {
+      "name": "Box Canyon Basics",
+      "clues": [
+       {
+        "value": 200,
+        "q": "How much does it cost to ride the gondola between Telluride and Mountain Village?",
+        "a": "Nothing — it's free (the first and only free public gondola of its kind in the U.S.)"
+       },
+       {
+        "value": 400,
+        "q": "What was Telluride called before the post office made it change its name in 1887?",
+        "a": "Columbia"
+       },
+       {
+        "value": 600,
+        "q": "What's the name of Colorado's tallest free-falling waterfall, at the end of Telluride's box canyon?",
+        "a": "Bridal Veil Falls (365 ft)"
+       },
+       {
+        "value": 800,
+        "q": "Which nearby 14er is the mountain on Coors cans?",
+        "a": "Wilson Peak"
+       },
+       {
+        "value": 1000,
+        "q": "Telluride is named after compounds of which chemical element, even though there's almost none of it in the area?",
+        "a": "Tellurium"
+       }
+      ]
+     },
+     {
+      "name": "Christmas Movies",
+      "clues": [
+       {
+        "value": 200,
+        "q": "In “Elf,” what are Buddy's four main food groups?",
+        "a": "Candy, candy canes, candy corns, and syrup"
+       },
+       {
+        "value": 400,
+        "q": "In “Home Alone,” which city is the McCallister family flying to when they leave Kevin behind?",
+        "a": "Paris"
+       },
+       {
+        "value": 600,
+        "q": "In “Christmas Vacation,” what does Clark Griswold get instead of his Christmas bonus?",
+        "a": "A membership in the Jelly of the Month Club"
+       },
+       {
+        "value": 800,
+        "q": "What's the name of George Bailey's guardian angel in “It's a Wonderful Life”?",
+        "a": "Clarence (Odbody)"
+       },
+       {
+        "value": 1000,
+        "q": "What is the name of the L.A. skyscraper where “Die Hard” takes place?",
+        "a": "Nakatomi Plaza"
+       }
+      ]
+     },
+     {
+      "name": "Holiday Hits",
+      "clues": [
+       {
+        "value": 200,
+        "q": "Which British duo had a hit with “Last Christmas” in 1984?",
+        "a": "Wham!"
+       },
+       {
+        "value": 400,
+        "q": "Whose recording of “White Christmas” is the best-selling single of all time?",
+        "a": "Bing Crosby"
+       },
+       {
+        "value": 600,
+        "q": "Brenda Lee was how old when she recorded “Rockin' Around the Christmas Tree”?",
+        "a": "13"
+       },
+       {
+        "value": 800,
+        "q": "“Mele Kalikimaka” means Merry Christmas in what language?",
+        "a": "Hawaiian"
+       },
+       {
+        "value": 1000,
+        "q": "In December 1965, two astronauts aboard Gemini 6 played the first song ever performed in space. What was it?",
+        "a": "“Jingle Bells” (on a harmonica and sleigh bells)"
+       }
+      ]
+     },
+     {
+      "name": "Christmas Around the World",
+      "clues": [
+       {
+        "value": 200,
+        "q": "In Japan, which American fast-food chain is a hugely popular Christmas dinner?",
+        "a": "KFC"
+       },
+       {
+        "value": 400,
+        "q": "In Italy, which kindly witch delivers gifts to children on the eve of Epiphany?",
+        "a": "La Befana"
+       },
+       {
+        "value": 600,
+        "q": "What's the name of the horned, half-goat creature who punishes naughty kids in Alpine folklore?",
+        "a": "Krampus"
+       },
+       {
+        "value": 800,
+        "q": "Iceland's “Jólabókaflóð” tradition of giving books on Christmas Eve translates to what?",
+        "a": "“Christmas Book Flood”"
+       },
+       {
+        "value": 1000,
+        "q": "Every year since 1947, which country has sent London the Christmas tree that stands in Trafalgar Square?",
+        "a": "Norway"
+       }
+      ]
+     },
+     {
+      "name": "Ski Bum 101",
+      "clues": [
+       {
+        "value": 200,
+        "q": "On a U.S. trail map, what symbol marks the hardest standard runs?",
+        "a": "A black diamond"
+       },
+       {
+        "value": 400,
+        "q": "“Après-ski” comes from French. What does it literally mean?",
+        "a": "After skiing"
+       },
+       {
+        "value": 600,
+        "q": "What do skiers call a sunny, cloudless day right after a big snowfall?",
+        "a": "A bluebird day"
+       },
+       {
+        "value": 800,
+        "q": "The world's first chairlift opened in 1936 at which Idaho resort?",
+        "a": "Sun Valley"
+       },
+       {
+        "value": 1000,
+        "q": "That first chairlift was adapted from a system built to load what onto ships?",
+        "a": "Bananas"
+       }
+      ]
+     },
+     {
+      "name": "Holiday Spirits",
+      "clues": [
+       {
+        "value": 200,
+        "q": "What's the German name for the hot mulled wine served at Christmas markets?",
+        "a": "Glühwein"
+       },
+       {
+        "value": 400,
+        "q": "What's the name of Puerto Rico's creamy coconut-and-rum Christmas drink?",
+        "a": "Coquito"
+       },
+       {
+        "value": 600,
+        "q": "Besides sugar, what are the three ingredients in a classic Irish coffee?",
+        "a": "Irish whiskey, hot coffee, and cream"
+       },
+       {
+        "value": 800,
+        "q": "In 1826, cadets at which U.S. military academy rioted after sneaking whiskey in for their Christmas eggnog?",
+        "a": "West Point (the “Eggnog Riot”)"
+       },
+       {
+        "value": 1000,
+        "q": "A famously strong eggnog recipe attributed to George Washington (Mount Vernon says it can't be traced to him) calls for four kinds of alcohol. Name two.",
+        "a": "Brandy, rye whiskey, Jamaica rum, and sherry"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Double Round",
+    "categories": [
+     {
+      "name": "Telluride Deep Cuts",
+      "clues": [
+       {
+        "value": 400,
+        "q": "The Telluride Film Festival is held every year over which holiday weekend?",
+        "a": "Labor Day weekend"
+       },
+       {
+        "value": 800,
+        "q": "Which famous outlaw pulled off his first bank robbery in Telluride in 1889?",
+        "a": "Butch Cassidy (the San Miguel Valley Bank)"
+       },
+       {
+        "value": 1200,
+        "q": "At about 9,070 feet, Telluride's airport holds what record?",
+        "a": "Highest commercial airport in the U.S. (scheduled passenger service)"
+       },
+       {
+        "value": 1600,
+        "q": "What's the name of Telluride's sidewalk spot, around since 1975, where locals leave and take things for free?",
+        "a": "The Free Box"
+       },
+       {
+        "value": 2000,
+        "q": "Which tongue-in-cheek summer Telluride festival has the official motto “Leave Me Alone”?",
+        "a": "The Nothing Festival"
+       }
+      ]
+     },
+     {
+      "name": "Rocky Mountain High",
+      "clues": [
+       {
+        "value": 400,
+        "q": "What's the tallest mountain in Colorado?",
+        "a": "Mount Elbert"
+       },
+       {
+        "value": 800,
+        "q": "Which Stephen King novel was inspired by his stay at the Stanley Hotel in Estes Park?",
+        "a": "The Shining"
+       },
+       {
+        "value": 1200,
+        "q": "The stretch of U.S. 550 between Ouray and Silverton has what nickname?",
+        "a": "The Million Dollar Highway"
+       },
+       {
+        "value": 1600,
+        "q": "Which 2015 Quentin Tarantino western was filmed in the snow near Telluride?",
+        "a": "The Hateful Eight"
+       },
+       {
+        "value": 2000,
+        "q": "Which Colorado city won the 1976 Winter Olympics, then gave them up after voters refused to pay for them?",
+        "a": "Denver"
+       }
+      ]
+     },
+     {
+      "name": "Christmas Movie Deep Cuts",
+      "clues": [
+       {
+        "value": 400,
+        "q": "In “A Christmas Story,” what does Ralphie want more than anything?",
+        "a": "A Red Ryder BB gun"
+       },
+       {
+        "value": 800,
+        "q": "What job does Hugh Grant's character have in “Love Actually”?",
+        "a": "Prime Minister of the U.K."
+       },
+       {
+        "value": 1200,
+        "q": "Name two of the three rules for taking care of a mogwai in “Gremlins.”",
+        "a": "No bright light, no water, and never feed it after midnight"
+       },
+       {
+        "value": 1600,
+        "q": "In “The Holiday,” Cameron Diaz swaps her L.A. house for Kate Winslet's cottage in which English county?",
+        "a": "Surrey"
+       },
+       {
+        "value": 2000,
+        "q": "In “The Muppet Christmas Carol,” which Muppet plays the narrator, Charles Dickens?",
+        "a": "Gonzo (with Rizzo the Rat)"
+       }
+      ]
+     },
+     {
+      "name": "Santa Lore",
+      "clues": [
+       {
+        "value": 400,
+        "q": "The real Saint Nicholas was a bishop in Myra, in what is now which country?",
+        "a": "Turkey"
+       },
+       {
+        "value": 800,
+        "q": "Rudolph was invented in 1939 for a promotional booklet from which department store?",
+        "a": "Montgomery Ward"
+       },
+       {
+        "value": 1200,
+        "q": "Which newspaper ran the 1897 editorial “Yes, Virginia, there is a Santa Claus”?",
+        "a": "The (New York) Sun"
+       },
+       {
+        "value": 1600,
+        "q": "Which political cartoonist's drawings in Harper's Weekly helped create the modern image of Santa?",
+        "a": "Thomas Nast"
+       },
+       {
+        "value": 2000,
+        "q": "Santa's “official hometown” in Finland sits on the Arctic Circle. What's the city?",
+        "a": "Rovaniemi"
+       }
+      ]
+     },
+     {
+      "name": "Christmas by the Numbers",
+      "clues": [
+       {
+        "value": 400,
+        "q": "The “X” in “Xmas” stands for which Greek letter?",
+        "a": "Chi (the first letter of “Christ” in Greek)"
+       },
+       {
+        "value": 800,
+        "q": "In what decade did Christmas become a U.S. federal holiday?",
+        "a": "The 1870s (1870)"
+       },
+       {
+        "value": 1200,
+        "q": "If you add up every gift from all twelve verses of “The Twelve Days of Christmas,” how many are there?",
+        "a": "364"
+       },
+       {
+        "value": 1600,
+        "q": "Which state was the first to make Christmas a legal holiday, in 1836?",
+        "a": "Alabama"
+       },
+       {
+        "value": 2000,
+        "q": "Which state was the last to recognize Christmas as a holiday, when it joined the Union in 1907?",
+        "a": "Oklahoma"
+       }
+      ]
+     },
+     {
+      "name": "Winter Games",
+      "clues": [
+       {
+        "value": 400,
+        "q": "Which skier, raised in Vail, holds the record for the most World Cup race wins ever?",
+        "a": "Mikaela Shiffrin"
+       },
+       {
+        "value": 800,
+        "q": "The 1993 movie “Cool Runnings” is about which country's bobsled team?",
+        "a": "Jamaica"
+       },
+       {
+        "value": 1200,
+        "q": "Which Army division trained at Colorado's Camp Hale, and had veterans who went on to build ski resorts like Vail?",
+        "a": "The 10th Mountain Division"
+       },
+       {
+        "value": 1600,
+        "q": "Which Italian ski drink mixes eggnog liqueur with brandy and whipped cream?",
+        "a": "Bombardino"
+       },
+       {
+        "value": 2000,
+        "q": "Which country has won the most Winter Olympic medals of all time?",
+        "a": "Norway"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "final": {
+   "category": "Telluride Firsts",
+   "q": "In 1891, a hydro plant near Telluride became the world's first to generate and send alternating current (AC) for industrial use. Which company built its generator?",
+   "a": "Westinghouse (L.L. Nunn's Ames Power Plant, using Tesla's AC system)"
+  }
+ }
+}
