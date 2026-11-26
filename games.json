@@ -1,7 +1,7 @@
 {
  "thanksgiving-2026": {
   "title": "Thanksgiving Trivia",
-  "subtitle": "Family game · Thanksgiving 2026",
+  "subtitle": "Thanksgiving 2026",
   "theme": "thanksgiving",
   "order": 1,
   "rounds": [
@@ -384,7 +384,7 @@
  },
  "telluride-christmas-2026": {
   "title": "Telluride Christmas Trivia",
-  "subtitle": "Adults only · Christmas 2026 in the box canyon",
+  "subtitle": "Christmas 2026",
   "theme": "christmas",
   "order": 2,
   "rounds": [
