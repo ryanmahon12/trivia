@@ -78,7 +78,7 @@
        },
        {
         "value": 400,
-        "q": "Which comic-strip character has appeared as a balloon in the Macy's parade more times than any other?",
+        "q": "Which character has appeared as a balloon in the Macy's parade more times than any other?",
         "a": "Snoopy"
        },
        {
@@ -103,8 +103,8 @@
       "clues": [
        {
         "value": 200,
-        "q": "In “Home Alone,” what's the nickname of Kevin's scary next-door neighbor with the snow shovel?",
-        "a": "Old Man Marley"
+        "q": "In “National Lampoon's Christmas Vacation,” what's the family's last name?",
+        "a": "The Griswolds"
        },
        {
         "value": 400,
@@ -228,8 +228,8 @@
       "clues": [
        {
         "value": 400,
-        "q": "What's the name of the bone two people pull apart to make a wish?",
-        "a": "The wishbone"
+        "q": "What do you call the bread mixture that's cooked inside the turkey?",
+        "a": "Stuffing (cooked in a separate dish, it's often called dressing)"
        },
        {
         "value": 800,
@@ -238,18 +238,18 @@
        },
        {
         "value": 1200,
-        "q": "What's the scientific name for the wishbone?",
-        "a": "The furcula"
+        "q": "What gas, made by yeast, makes dinner rolls rise?",
+        "a": "Carbon dioxide"
        },
        {
         "value": 1600,
-        "q": "In most American grocery stores, the orange “yams” are actually what?",
-        "a": "Sweet potatoes"
+        "q": "What's the name of the chemical reaction that browns turkey skin and toasts bread?",
+        "a": "The Maillard reaction"
        },
        {
         "value": 2000,
-        "q": "According to the USDA, what internal temperature must turkey reach to be safe to eat?",
-        "a": "165°F"
+        "q": "What's the scientific name for the wishbone?",
+        "a": "The furcula"
        }
       ]
      },
@@ -258,8 +258,8 @@
       "clues": [
        {
         "value": 400,
-        "q": "What's the name of the snowman in Disney's “Frozen”?",
-        "a": "Olaf"
+        "q": "In the original 1966 “How the Grinch Stole Christmas!”, what's the name of the Grinch's dog?",
+        "a": "Max"
        },
        {
         "value": 800,
@@ -269,17 +269,17 @@
        {
         "value": 1200,
         "q": "Name two foods on the menu at “A Charlie Brown Thanksgiving.”",
-        "a": "Buttered toast, popcorn, pretzels, and jelly beans"
+        "a": "Buttered toast, popcorn, pretzel sticks, jelly beans & ice cream/sundaes"
        },
        {
         "value": 1600,
-        "q": "In “Rudolph the Red-Nosed Reindeer,” what does Hermey the elf want to be instead of a toymaker?",
-        "a": "A dentist"
+        "q": "In “The Year Without a Santa Claus,” what are the names of the two feuding weather brothers?",
+        "a": "Heat Miser and Snow Miser"
        },
        {
         "value": 2000,
-        "q": "In “The Year Without a Santa Claus,” what are the names of the two feuding weather brothers?",
-        "a": "Heat Miser and Snow Miser"
+        "q": "In “Frosty the Snowman” (1969), what's the name of the magician who wants his hat back?",
+        "a": "Professor Hinkle"
        }
       ]
      },
@@ -288,27 +288,27 @@
       "clues": [
        {
         "value": 400,
-        "q": "Counting Rudolph, how many reindeer pull Santa's sleigh?",
-        "a": "Nine"
+        "q": "How many ghosts visit Scrooge in “A Christmas Carol”?",
+        "a": "Four: Jacob Marley (the ghost in chains who warns him), plus the Ghosts of Christmas Past, Present, and Yet to Come"
        },
        {
         "value": 800,
-        "q": "Thanksgiving in the U.S. always falls on which Thursday of November?",
-        "a": "The fourth Thursday"
+        "q": "What's the latest date in November that Thanksgiving can fall on?",
+        "a": "November 28"
        },
        {
         "value": 1200,
-        "q": "About how many passengers sailed on the Mayflower: 50, 100, or 200?",
+        "q": "About how many passengers sailed on the Mayflower?",
         "a": "About 100 (102 passengers)"
        },
        {
         "value": 1600,
-        "q": "In what year did a president first officially “pardon” a turkey (George H.W. Bush)?",
+        "q": "In what year did a president first officially “pardon” a turkey? ",
         "a": "1989"
        },
        {
         "value": 2000,
-        "q": "About how many turkeys do Americans eat on Thanksgiving: 4.6 million, 46 million, or 460 million?",
+        "q": "About how many turkeys do Americans eat on Thanksgiving? ",
         "a": "About 46 million"
        }
       ]
@@ -378,7 +378,7 @@
   ],
   "final": {
    "category": "Thanksgiving's Champion",
-   "q": "Sarah Josepha Hale spent 17 years writing letters to presidents until Lincoln made Thanksgiving national. She's also credited with writing which famous nursery rhyme?",
+   "q": "Sarah Josepha Hale was a writer, activist & editor. She spent 17 years writing letters to presidents until Lincoln made Thanksgiving national. She's also credited with writing which famous nursery rhyme?",
    "a": "“Mary Had a Little Lamb”"
   }
  },
