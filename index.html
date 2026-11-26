@@ -317,7 +317,7 @@
 
   // ---------- SETUP ----------
   function viewSetup(g){
-    const prev = store.get('trivia_last_teams') || ['Team 1','Team 2','Team 3'];
+    const prev = ['Team 1','Team 2'];
     let names = prev.slice();
     let deduct = !!store.get('trivia_last_deduct');
     const list = h('div',{class:'teams'});
